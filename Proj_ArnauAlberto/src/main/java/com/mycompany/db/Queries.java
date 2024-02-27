@@ -1,5 +1,6 @@
-package com.mycompany.proj_arnaualberto;
+package com.mycompany.db;
 
+import com.mycompany.modelo.Carrera;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

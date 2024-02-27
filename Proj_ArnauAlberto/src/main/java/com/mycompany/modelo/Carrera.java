@@ -1,4 +1,4 @@
-package com.mycompany.proj_arnaualberto;
+package com.mycompany.modelo;
 
 public class Carrera {
 

@@ -1,7 +1,9 @@
 package com.mycompany.proj_arnaualberto;
 
+import com.mycompany.db.Mysql;
+import com.mycompany.modelo.Carrera;
 import java.sql.SQLException;
-import com.mycompany.proj_arnaualberto.Queries;
+import com.mycompany.db.Queries;
 import java.sql.Connection;
 import java.util.Scanner;
 
