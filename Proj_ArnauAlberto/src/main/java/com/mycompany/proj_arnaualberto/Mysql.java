@@ -55,6 +55,12 @@ public class Mysql {
          ex.printStackTrace();
                      }
      }
+    public Connection getConnection() throws SQLException {
+        String BD_URL = String.format("%s//%s/%s","jdbc:mysql:" ,"localhost", "escuela");
+        Connection conn;
+        conn = DriverManager.getConnection(BD_URL,"root" , "123456");
+        return conn;
+    }
     }
     
 
