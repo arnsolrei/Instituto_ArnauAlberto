@@ -49,7 +49,7 @@ public class Queries {
     public void fetchCarreras(Carrera Car) {
         try {
             Connection conn = DB.getConnection();
-            String query = "SELECT * FROM `escuela`.`carreras` WHERE nombre ="+Car.nombre;
+            String query = "SELECT * FROM `escuela`.`carreras` WHERE nombre = '"+Car.nombre+"';";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
