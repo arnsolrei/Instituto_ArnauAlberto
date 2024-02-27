@@ -38,7 +38,12 @@ public class Proj_ArnauAlberto {
                     queries.deleteCarreras(car, conn);
                     break;
                 case 3:
-                    System.out.println("No esta implementado, espera a futuras versiones.");
+                    sc.nextLine();
+                    System.out.print("Introduce el nombre de la carrera: ");
+                    car = new Carrera(sc.nextLine());
+                    System.out.print("Introduce el nuevo nombre de la carrera: ");
+                    String nombreEditar = sc.nextLine();
+                    queries.updateCarreras(car, conn,nombreEditar);
                     break;
                 case 4:
                     sc.nextLine();

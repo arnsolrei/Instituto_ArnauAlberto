@@ -33,9 +33,21 @@ public class Queries {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-
                 System.out.println("Nombre: " + rs.getString("nombre")
                 );
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error en la conexión con la BBDD: " + ex.getMessage());
+        }
+    }
+    
+    public void updateCarreras(Carrera Car, Connection conn, String nombreEditar) {
+        try {
+            String query = "SELECT * FROM `escuela`.`carreras` WHERE nombre = '" + Car.nombre + "';";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                updateCarrerasPorId(rs.getInt("id"), conn, nombreEditar);
             }
         } catch (SQLException ex) {
             System.err.println("Error en la conexión con la BBDD: " + ex.getMessage());
@@ -50,6 +62,21 @@ public class Queries {
             int result = st.executeUpdate();
             if (result >= 1) {
                 System.out.println("Carrera borrada exitosamente!");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error con la conexión de la BBDD! " + ex.getMessage());
+        }
+    }
+    public void updateCarrerasPorId(int carId, Connection conn, String nombreEditar) {
+        try {
+            String query = "UPDATE `escuela`.`carreras` SET `nombre` = ? WHERE (`id` = ?);";
+            
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, nombreEditar);
+            st.setInt(2, carId);
+            int result = st.executeUpdate();
+            if (result >= 1) {
+                System.out.println("Carrera editada exitosamente!");
             }
         } catch (SQLException ex) {
             System.err.println("Error con la conexión de la BBDD! " + ex.getMessage());
