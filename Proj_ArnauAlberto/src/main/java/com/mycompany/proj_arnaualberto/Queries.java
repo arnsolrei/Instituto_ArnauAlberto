@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.proj_arnaualberto;
 
 import java.sql.Connection;
@@ -10,31 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-
-/**
- *
- * @author rolet
- */
 public class Queries {
 
-    private final Mysql DB;
-    
-   
-
     public Queries() {
-        DB = new Mysql();
-        
-        
     }
 
-    
-
-    public void insertCarrera(Carrera car) {
+    public void insertCarrera(Carrera car, Connection conn) {
         try {
-            Connection conn = DB.getConnection();
             if (conn != null) {
-                String query = "INSERT INTO `escuela`.`carreras`(`nombre`) VALUES('"+car.nombre
+                String query = "INSERT INTO `escuela`.`carreras`(`nombre`) VALUES('" + car.nombre
                         + "');";
                 System.out.println(query);
                 Statement st = conn.createStatement();
@@ -46,15 +26,14 @@ public class Queries {
         }
     }
 
-    public void fetchCarreras(Carrera Car) {
+    public void fetchCarreras(Carrera Car, Connection conn) {
         try {
-            Connection conn = DB.getConnection();
-            String query = "SELECT * FROM `escuela`.`carreras` WHERE nombre = '"+Car.nombre+"';";
+            String query = "SELECT * FROM `escuela`.`carreras` WHERE nombre = '" + Car.nombre + "';";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                
-                System.out.println("Nombre: " + rs.getString("nombre") 
+
+                System.out.println("Nombre: " + rs.getString("nombre")
                 );
             }
         } catch (SQLException ex) {
@@ -62,9 +41,8 @@ public class Queries {
         }
     }
 
-    public void deleteCarreras(Carrera car) {
+    public void deleteCarreras(Carrera car, Connection conn) {
         try {
-            Connection conn = DB.getConnection();
             String query = "DELETE FROM `escuela`.`carreras` WHERE nombre = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, car.nombre);
@@ -77,4 +55,3 @@ public class Queries {
         }
     }
 }
-

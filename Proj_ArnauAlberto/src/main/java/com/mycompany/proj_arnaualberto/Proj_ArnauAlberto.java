@@ -1,25 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 package com.mycompany.proj_arnaualberto;
 
 import java.sql.SQLException;
 import com.mycompany.proj_arnaualberto.Queries;
+import java.sql.Connection;
 import java.util.Scanner;
 
-/**
- *
- * @author rolet
- */
 public class Proj_ArnauAlberto {
 
     public static void main(String[] args) throws SQLException {
-
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
         int opc = 0;
         Mysql sql = new Mysql();
-        sql.getConnection();
+        Connection conn = sql.getConnection();
         Queries queries = new Queries();
         do {
             System.out.println("1.Quiere añadir una carrera?");
@@ -32,27 +25,29 @@ public class Proj_ArnauAlberto {
             switch (opc) {
                 case 1:
                     sc.nextLine();
-                    System.out.println("Introduce el nombre de la carrera: ");
+                    System.out.print("Introduce el nombre de la carrera: ");
                     car = new Carrera(sc.nextLine());
-                    queries.insertCarrera(car);
+                    queries.insertCarrera(car, conn);
                     break;
                 case 2:
                     sc.nextLine();
-                    System.out.println("Introduce el nombre de la carrera: ");
+                    System.out.print("Introduce el nombre de la carrera: ");
                     car = new Carrera(sc.nextLine());
-                    queries.deleteCarreras(car);
+                    queries.deleteCarreras(car, conn);
                     break;
                 case 3:
                     System.out.println("No esta implementado, espera a futuras versiones.");
                     break;
                 case 4:
                     sc.nextLine();
-                    System.out.println("Introduce el nombre de la carrera: ");
+                    System.out.print("Introduce el nombre de la carrera: ");
                     car = new Carrera(sc.nextLine());
-                    queries.fetchCarreras(car);
+                    queries.fetchCarreras(car, conn);
                     break;
                 case 5:
                     exit = true;
+                    conn.close();
+                    sc.close();
                     System.out.println("Saliendo del programa");
                     break;
                 default:
